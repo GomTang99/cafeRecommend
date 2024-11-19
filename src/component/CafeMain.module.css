@@ -1,0 +1,65 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+li {
+    list-style: none;
+}
+
+img {
+    display: block;
+    width: 100%;
+}
+
+.header {
+    text-align: center;
+    margin-top: 40px;
+}
+
+.header > h1 > a{
+    color: white;
+}
+
+.bgImg {
+    display: flex;
+    justify-content: center; /* 수평 중앙 정렬 */
+    background-image: url('../img/main_bg.avif'); /* 배경 이미지 설정 */
+    background-size: cover; /* 배경 이미지 크기 조정 */
+    background-position: center; /* 배경 이미지 중앙 정렬 */
+    height: 100vh; /* 원하는 높이 설정 */
+    width: 100%; /* 전체 너비 */
+    position: relative;
+}
+
+.contentWrap{
+    margin-top: 20px;
+    position: relative; /* 자식 요소의 절대 위치 설정을 위해 필요 */
+    overflow: hidden; /* 자식 요소가 넘어가는 부분 숨기기 */
+    height: 700px; /* 슬라이드 높이 설정 */
+    width: 1420px;
+}
+
+.contentImg {
+    background-size: cover; /* 배경 이미지 크기 조정 */
+    background-position: center; /* 배경 이미지 중앙 정렬 */
+    width: 100%; /* 전체 너비 */
+    height: 100%; /* 부모 요소에 맞게 높이 설정 */
+    position: absolute; /* 절대 위치 */
+    transition: opacity 1s ease-in-out; /* 부드러운 전환 효과 */
+    opacity: 0;
+}
+
+.visible {
+    opacity: 1; /* 보이는 상태 */
+}
+
+.hidden{
+    opacity: 0; /* 숨겨진 상태 */
+}

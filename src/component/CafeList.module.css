@@ -1,0 +1,107 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+li {
+    list-style: none;
+}
+
+img {
+    display: block;
+    width: 100%;
+}
+
+.bgImg {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* 수직 정렬을 상단으로 변경 */
+    background-image: url('../img/main_bg.avif'); /* 배경 이미지 설정 */
+    background-size: cover; /* 배경 이미지 크기 조정 */
+    background-position: center; /* 배경 이미지 중앙 정렬 */
+    background-repeat: no-repeat; /* 배경 이미지 반복 방지 */
+    background-attachment: scroll; /* 스크롤 시 배경 이미지 이동 */
+    min-height: 100vh; /* 최소 높이 설정 */
+    width: 100%; /* 전체 너비 */
+    position: relative;
+}
+
+.header {
+    text-align: center;
+    margin-top: 20px; /* 상단 여백 추가 */
+    height: auto; /* 높이 자동 조정 */
+}
+
+.title{
+    text-align: center;
+    align-items: center;
+    color: white;
+}
+
+
+.list_wrap{
+    width: 80%;
+    text-align: center;
+    margin: 20px auto; /* 리스트와의 간격 추가 */
+    height: 80%;
+    background-color: white;
+}
+
+.list_up{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.list{
+    width: 30%; 
+    border: 1px solid black;
+}
+
+.cardContainer {
+    display: flex;
+    flex-wrap: wrap; /* 여러 줄로 카드 배치 */
+    justify-content: space-between; /* 카드 간격 조절 */
+}
+
+.card {
+    background: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin: 10px; /* 카드 간격 */
+    padding: 10px;
+    width: calc(33% - 20px); /* 3개 카드가 한 줄에 보이도록 설정 */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    text-align: center; /* 텍스트 중앙 정렬 */
+}
+
+.cardImage {
+    width: 100%; /* 이미지 전체 너비 */
+    height: auto; /* 비율에 맞게 높이 자동 조정 */
+    border-radius: 8px 8px 0 0; /* 이미지 상단 모서리 둥글게 */
+}
+
+.cardTitle {
+    font-size: 1.2em;
+    margin: 10px 0;
+}
+
+.cardInfo {
+    color: #555; /* 정보 텍스트 색상 */
+}
+
+.categorySelect {
+    margin: 20px auto; /* 위아래 여백 */
+    text-align: center; /* 중앙 정렬 */
+}
+
+.categorySelect label {
+    margin-right: 10px; /* 레이블과 드롭다운 사이 여백 */
+}
