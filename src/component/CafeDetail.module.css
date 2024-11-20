@@ -1,0 +1,87 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+li {
+    list-style: none;
+}
+
+img {
+    display: block;
+    width: 100%;
+}
+
+.bgImg {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* 수직 정렬을 상단으로 변경 */
+    background-image: url('../img/main_bg.avif'); /* 배경 이미지 설정 */
+    background-size: cover; /* 배경 이미지 크기 조정 */
+    background-position: center; /* 배경 이미지 중앙 정렬 */
+    background-repeat: no-repeat; /* 배경 이미지 반복 방지 */
+    background-attachment: scroll; /* 스크롤 시 배경 이미지 이동 */
+    min-height: 100vh; /* 최소 높이 설정 */
+    width: 100%; /* 전체 너비 */
+    position: relative;
+}
+
+.header {
+    text-align: center;
+    margin-top: 20px; /* 상단 여백 추가 */
+    height: auto; /* 높이 자동 조정 */
+}
+
+.title{
+    text-align: center;
+    align-items: center;
+    color: white;
+}
+
+.cafeDetail {
+    padding: 20px;
+    border-radius: 8px;
+    transition: transform 0.2s; /* 호버 시 애니메이션 효과 */
+}
+
+.cafeDetail:hover {
+    transform: translateY(-5px); /* 호버 시 카드 상승 효과 */
+}
+
+.cafeImage {
+    max-width: 50%; /* 이미지 크기 줄이기 */
+    height: auto; /* 비율에 맞게 높이 자동 조정 */
+    border-radius: 8px; /* 모서리 둥글게 */
+    margin: 0 auto; /* 중앙 정렬 */
+}
+
+.cafeTitle {
+    font-size: 1.5em;
+    margin: 10px 0;
+    text-align: center; /* 제목 중앙 정렬 */
+}
+
+.cafeInfo {
+    color: #555;
+    text-align: center; /* 정보 중앙 정렬 */
+    margin-bottom: 10px; /* 아래 여백 추가 */
+}
+
+.cafeDescription {
+    margin: 10px 0;
+    line-height: 1.6; /* 줄 간격 조정 */
+}
+
+.backLink {
+    display: inline-block;
+    margin-top: 20px;
+    text-decoration: underline;
+    color: blue;
+    text-align: center; /* 중앙 정렬 */
+}

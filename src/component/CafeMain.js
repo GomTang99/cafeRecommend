@@ -3,9 +3,9 @@ import styles from './CafeMain.module.css';
 import { Link, useNavigate } from 'react-router-dom';
 
 const images = [
-    { id: 1, url: require('../img/view1.jpg'), link: '/cafeList' },
-    { id: 2, url: require('../img/view2.png'), link: '/cafeList' },
-    { id: 3, url: require('../img/view3.jpg'), link: '/cafeList' },
+    { id: 1, url: require('../img/slide1.jpg'), link: '/cafeList' },
+    { id: 2, url: require('../img/slide2.jpg'), link: '/cafeList' },
+    { id: 3, url: require('../img/slide3.jpg'), link: '/cafeList' },
 ];
 
 export default function CafeMain() {
