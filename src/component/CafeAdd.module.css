@@ -1,0 +1,79 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+li {
+    list-style: none;
+}
+
+img {
+    display: block;
+    width: 100%;
+}
+
+.bgImg {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* 수직 정렬을 상단으로 변경 */
+    background-image: url('../img/main_bg.avif'); /* 배경 이미지 설정 */
+    background-size: cover; /* 배경 이미지 크기 조정 */
+    background-position: center; /* 배경 이미지 중앙 정렬 */
+    background-repeat: no-repeat; /* 배경 이미지 반복 방지 */
+    background-attachment: scroll; /* 스크롤 시 배경 이미지 이동 */
+    min-height: 100vh; /* 최소 높이 설정 */
+    width: 100%; /* 전체 너비 */
+    position: relative;
+}
+
+
+.form {
+    width: 50%;
+    max-width: 600px;
+    margin: 100px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+}
+
+.formGroup {
+    margin-bottom: 20px; /* 아래 여백 추가 */
+    padding: 10px; /* 내부 패딩 추가 */
+    border: 1px solid #ddd; /* 경계선 추가 (선택 사항) */
+    border-radius: 4px; /* 모서리 둥글게 */
+    background-color: #ffffff; /* 배경색 추가 (선택 사항) */
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="file"],
+select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.submitButton {
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.submitButton:hover {
+    background-color: #0056b3;
+}

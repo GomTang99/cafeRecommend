@@ -105,3 +105,26 @@ img {
 .categorySelect label {
     margin-right: 10px; /* 레이블과 드롭다운 사이 여백 */
 }
+
+/* 작성하기 버튼 */
+.addButtonContainer {
+    text-align: center; /* 버튼 중앙 정렬 */
+    margin-top: 20px; /* 상단 여백 추가 */
+}
+
+.addButton {
+    display: inline-block;
+    padding: 10px 20px; /* 버튼 패딩 */
+    background-color: #007bff; /* 버튼 배경 색상 */
+    color: white; /* 버튼 텍스트 색상 */
+    border: none; /* 테두리 제거 */
+    border-radius: 5px; /* 모서리 둥글게 */
+    cursor: pointer; /* 커서 포인터 변경 */
+    text-decoration: none; /* 링크 기본 스타일 제거 */
+    font-size: 1em; /* 글씨 크기 */
+    transition: background-color 0.3s; /* 배경 색상 전환 효과 */
+}
+
+.addButton:hover {
+    background-color: #0056b3; /* 호버 시 배경 색상 변경 */
+}

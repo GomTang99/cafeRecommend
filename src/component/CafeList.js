@@ -80,6 +80,11 @@ export default function CafeList() {
                     ))}
                 </div>
             </div>
+            <div className={styles.addButtonContainer}>
+                <Link to="/cafeadd" className={styles.addButton}>
+                    작성하기
+                </Link>
+            </div>
         </div>
     );
 }
