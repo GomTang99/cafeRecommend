@@ -8,4 +8,4 @@ React, Node.js를 활용하여 카페를 추천해주는 카페 추천 웹사이
 - Node.js
 - Express
 - MySQL
-
+- 외부API (카카오맵 사용)
