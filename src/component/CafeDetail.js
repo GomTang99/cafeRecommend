@@ -33,7 +33,7 @@ export default function CafeDetail() {
             position: position,
         });
         marker.setMap(map);
-    }, []);
+    }, [cafe.latitude, cafe.longtitude]);
 
 
     if(!cafe) {
@@ -55,7 +55,7 @@ export default function CafeDetail() {
 
                         <div style={{ width: "90%", height: "600px", margin: "0 auto"}} ref={container}></div>
 
-                    <button onClick={() => navigate('/')} className={styles.backButton}>
+                    <button onClick={() => navigate('/cafeList')} className={styles.backButton}>
                         뒤로가기
                     </button>
                 </div>
