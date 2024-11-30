@@ -5,6 +5,7 @@ import CafeDetail from './component/CafeDetail';
 import CafeAdd from './component/CafeAdd';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
+
 function App() {
   return (
     <BrowserRouter>

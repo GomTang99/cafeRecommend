@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 import styles from './CafeList.module.css';
 import { Link } from 'react-router-dom';
+import { FaBell } from "react-icons/fa";
 
 export default function CafeList() {
 
     const [selectedRegion, setSelectedRegion] = useState("all");
     const [selectedCategory, setSelectedCategory] = useState("all");
+    const [showAlert, setShowAlert] = useState(false); // 알림 상태 추가
+    // const [alertMessage, setAlertMessage] = useState(""); // 알림 메시지 상태 추가
 
     // 카페 데이터
     const cafes = [
@@ -22,50 +25,71 @@ export default function CafeList() {
         return regionMatch && categoryMatch;
     });
 
+    const handleAlertClick = () => {
+        // setAlertMessage(`${cafe.name} : 수정 요청 내용`); // 카페 이름과 수정 내용을 설정
+        setShowAlert(true); // 알림 팝업 표시
+    }
+
+    const closeAlert = () => {
+        setShowAlert(false); // 알림 팝업 닫기
+    }
+
     return (
         <div className={styles.bgImg}>
             <h1 className={styles.header}>
-                <Link to="/" className={styles.title}>CAFE 추천 리스트</Link> 
+                <Link to="/" className={styles.title}>CAFE 추천 리스트</Link>                
+                <ul className={styles.navList}>
+                <li>
+                    <button onClick={handleAlertClick} className={styles.alram}>
+                        <FaBell size={24} />
+                    </button>
+                </li>
+                <li>
+                    <Link to="/mypage" className={styles.mypage}>마이페이지</Link>
+                </li>
+            </ul>
             </h1>
+            
+            <div className={styles.selectContainer}>
+                <div className={styles.categorySelect}>
+                    <label htmlFor="region">지역 선택:</label>
+                    <select 
+                        id="region" 
+                        value={selectedRegion} 
+                        onChange={(e) => setSelectedRegion(e.target.value)}
+                    >
+                        <option value="all">모두 보기</option>
+                        <option value="서울">서울</option>
+                        <option value="인천">인천</option>
+                        <option value="경기">경기</option>
+                        <option value="부산">부산</option>
+                        <option value="대구">대구</option>
+                        <option value="울산">울산</option>
+                        <option value="세종">세종</option>
+                        <option value="강원">강원</option>
+                        <option value="경남">경남</option>
+                        <option value="경북">경북</option>
+                        <option value="전남">전남</option>
+                        <option value="전북">전북</option>
+                        <option value="충남">충남</option>
+                        <option value="충북">충북</option>
+                        <option value="제주">제주</option>
+                    </select>
+                </div>
 
-            <div className={styles.categorySelect}>
-                <label htmlFor="region">지역 선택:</label>
-                <select 
-                    id="region" 
-                    value={selectedRegion} 
-                    onChange={(e) => setSelectedRegion(e.target.value)}
-                >
-                    <option value="all">모두 보기</option>
-                    <option value="서울">서울</option>
-                    <option value="인천">인천</option>
-                    <option value="경기">경기</option>
-                    <option value="부산">부산</option>
-                    <option value="대구">대구</option>
-                    <option value="울산">울산</option>
-                    <option value="세종">세종</option>
-                    <option value="강원">강원</option>
-                    <option value="경남">경남</option>
-                    <option value="경북">경북</option>
-                    <option value="전남">전남</option>
-                    <option value="전북">전북</option>
-                    <option value="충남">충남</option>
-                    <option value="충북">충북</option>
-                    <option value="제주">제주</option>
-                </select>
-            </div>
-
-            <div className={styles.categorySelect}>
-                <label htmlFor="category">맛집 선택:</label>
-                <select 
-                    id="category" 
-                    value={selectedCategory} 
-                    onChange={(e) => setSelectedCategory(e.target.value)}
-                >
-                    <option value="all">모두 보기</option>
-                    <option value="뷰맛집">뷰 맛집</option>
-                    <option value="빵맛집">빵 맛집</option>
-                    <option value="커피맛집">커피 맛집</option>
-                </select>
+                <div className={styles.categorySelect}>
+                    <label htmlFor="category">맛집 선택:</label>
+                    <select 
+                        id="category" 
+                        value={selectedCategory} 
+                        onChange={(e) => setSelectedCategory(e.target.value)}
+                    >
+                        <option value="all">모두 보기</option>
+                        <option value="뷰맛집">뷰 맛집</option>
+                        <option value="빵맛집">빵 맛집</option>
+                        <option value="커피맛집">커피 맛집</option>
+                    </select>
+                </div>
             </div>
 
 
@@ -85,6 +109,23 @@ export default function CafeList() {
                     작성하기
                 </Link>
             </div>
+
+            {/* 알림 팝업 */}
+            {showAlert && (
+                <div className={styles.alertPopup}>
+                    <div className={styles.alertContent}>
+                        <span className={styles.closeButton} onClick={closeAlert}>×</span>
+                        <h2 className={styles.popupTitle}>알림</h2>
+                        <ul>
+                            <li>
+                                <a>수정 요청 내용</a>
+                                {/* <button className={styles.alertLink} onClick={closeAlert}>수정 요청 내용</button> */}
+                            </li> 
+                        </ul>
+                    </div>
+                </div>
+            )}
+
         </div>
     );
 }
