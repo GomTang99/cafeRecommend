@@ -1,0 +1,92 @@
+css
+
+
+/* 기본 스타일 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+li {
+    list-style: none;
+}
+
+img {
+    display: block;
+    width: 100%;
+}
+
+/* 마이페이지 컨테이너 */
+.mypageContainer {
+    padding: 20px;
+    background-color: #f9f9f9; /* 배경색 변경 */
+    border-radius: 8px; /* 둥근 모서리 */
+    max-width: 800px; /* 최대 너비 설정 */
+    margin: auto; /* 중앙 정렬 */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
+}
+
+/* 카페 아이템 스타일 */
+.cafeItem {
+    border: 1px solid #ccc;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 5px; /* 둥근 모서리 */
+    background-color: #ffffff; /* 흰색 배경 */
+    transition: box-shadow 0.3s; /* 애니메이션 효과 */
+}
+
+.cafeItem:hover {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* 마우스 오버 시 그림자 효과 */
+}
+
+/* 수정 폼 스타일 */
+.editForm {
+    margin-top: 20px;
+    padding: 15px;
+    border: 1px solid #007bff; /* 파란색 테두리 */
+    border-radius: 5px; /* 둥근 모서리 */
+    background-color: #e7f1ff; /* 연한 파란색 배경 */
+}
+
+/* 입력 필드 스타일 */
+.editForm input {
+    display: block;
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px; /* 둥근 모서리 */
+    width: 100%; /* 전체 너비 */
+    font-size: 14px; /* 글자 크기 */
+    transition: border-color 0.3s; /* 테두리 색상 변경 애니메이션 */
+}
+
+.editForm input:focus {
+    border-color: #007bff; /* 포커스 시 파란색 테두리 */
+    outline: none; /* 기본 아웃라인 제거 */
+}
+
+/* 버튼 스타일 */
+button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px; /* 둥근 모서리 */
+    background-color: #007bff; /* 파란색 배경 */
+    color: white; /* 흰색 글씨 */
+    cursor: pointer; /* 커서 포인터 */
+    transition: background-color 0.3s; /* 배경색 변경 애니메이션 */
+}
+
+button:hover {
+    background-color: #0056b3; /* 마우스 오버 시 어두운 파란색 */
+}
+
+button:focus {
+    outline: none; /* 기본 아웃라인 제거 */
+}

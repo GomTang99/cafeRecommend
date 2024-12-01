@@ -8,7 +8,6 @@ export default function CafeList() {
     const [selectedRegion, setSelectedRegion] = useState("all");
     const [selectedCategory, setSelectedCategory] = useState("all");
     const [showAlert, setShowAlert] = useState(false); // 알림 상태 추가
-    // const [alertMessage, setAlertMessage] = useState(""); // 알림 메시지 상태 추가
     const [favorites, setFavorites] = useState([]); // 즐겨찾기 상태 알림 추가
 
     // 카페 데이터
@@ -54,7 +53,7 @@ export default function CafeList() {
                     </button>
                 </li>
                 <li>
-                    <Link to="/mypage" className={styles.mypage}>마이페이지</Link>
+                    <Link to="/mypage" className={styles.CafeMypage}>마이페이지</Link>
                 </li>
             </ul>
             </h1>
