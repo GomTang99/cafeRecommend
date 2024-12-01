@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react"
+import React, { useEffect, useRef } from "react";
 import styles from './CafeDetail.module.css';
 import { Link, useParams, useNavigate } from "react-router-dom";
 
@@ -35,15 +35,14 @@ export default function CafeDetail() {
         marker.setMap(map);
     }, [cafe.latitude, cafe.longtitude]);
 
-
-    if(!cafe) {
-        return <p>카페 정보를 찾을 수 없습니다.</p>
+    if (!cafe) {
+        return <p>카페 정보를 찾을 수 없습니다.</p>;
     }
 
     return (
         <div className={styles.bgImg}>
             <h1 className={styles.header}>
-                <Link to="/"  className={styles.title}>CAFE 정보</Link>
+                <Link to="/" className={styles.title}>CAFE 정보</Link>
             </h1>
 
             <div className={styles.container}>
@@ -53,7 +52,7 @@ export default function CafeDetail() {
                     <p className={styles.cafeInfo}>{cafe.region} | {cafe.category}</p>
                     <p className={styles.cafeDescription}>{cafe.description}</p>
 
-                        <div style={{ width: "90%", height: "600px", margin: "0 auto"}} ref={container}></div>
+                    <div style={{ width: "90%", height: "600px", margin: "0 auto" }} ref={container}></div>
 
                     <button onClick={() => navigate('/cafeList')} className={styles.backButton}>
                         뒤로가기

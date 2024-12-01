@@ -9,6 +9,7 @@ export default function CafeList() {
     const [selectedCategory, setSelectedCategory] = useState("all");
     const [showAlert, setShowAlert] = useState(false); // 알림 상태 추가
     // const [alertMessage, setAlertMessage] = useState(""); // 알림 메시지 상태 추가
+    const [favorites, setFavorites] = useState([]); // 즐겨찾기 상태 알림 추가
 
     // 카페 데이터
     const cafes = [
@@ -33,6 +34,14 @@ export default function CafeList() {
     const closeAlert = () => {
         setShowAlert(false); // 알림 팝업 닫기
     }
+
+    const toggleFavorite = (cafeId) => {
+        if (favorites.includes(cafeId)) {
+            setFavorites(favorites.filter(id => id !== cafeId)); // 즐겨찾기에서 제거
+        } else {
+            setFavorites([...favorites, cafeId]); // 즐겨찾기에 추가
+        }
+    };
 
     return (
         <div className={styles.bgImg}>
@@ -93,16 +102,24 @@ export default function CafeList() {
             </div>
 
 
-            <div className={styles.list_wrap}>
-                <div className={styles.cardContainer}>
-                    {filteredCafes.map(cafe => (
-                        <Link to={`/cafe/${cafe.id}`} key={cafe.id} className={styles.card}>
-                            <img src={cafe.imageUrl} alt={cafe.name} className={styles.cardImage} />
-                            <h3 className={styles.cardTitle}>{cafe.name}</h3>
-                            <p className={styles.cardInfo}>{cafe.region} | {cafe.category}</p>
-                        </Link>
-                    ))}
-                </div>
+        <div className={styles.list_wrap}>
+            <div className={styles.cardContainer}>
+            {filteredCafes.map(cafe => (
+                <div key={cafe.id} className={styles.card}>
+                <Link to={`/cafe/${cafe.id}`} className={styles.cardLink}>
+                    <img src={cafe.imageUrl} alt={cafe.name} className={styles.cardImage} />
+                    <h3 className={styles.cardTitle}>{cafe.name}</h3>
+                    <p className={styles.cardInfo}>{cafe.region} | {cafe.category}</p>
+                </Link>
+                <button 
+                    className={favorites.includes(cafe.id) ? styles.favoriteButtonActive : styles.favoriteButton} 
+                    onClick={() => toggleFavorite(cafe.id)}
+                >
+                {favorites.includes(cafe.id) ? '❤️' : '♡'}
+                </button>
+            </div>
+    ))}
+</div>
             </div>
             <div className={styles.addButtonContainer}>
                 <Link to="/cafeadd" className={styles.addButton}>
@@ -118,8 +135,7 @@ export default function CafeList() {
                         <h2 className={styles.popupTitle}>알림</h2>
                         <ul>
                             <li>
-                                <a>수정 요청 내용</a>
-                                {/* <button className={styles.alertLink} onClick={closeAlert}>수정 요청 내용</button> */}
+                                <button className={styles.alertLink} onClick={closeAlert}>수정 요청 내용</button>
                             </li> 
                         </ul>
                     </div>
