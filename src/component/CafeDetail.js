@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styles from './CafeDetail.module.css';
 import { Link, useParams, useNavigate } from "react-router-dom";
 
@@ -8,6 +8,8 @@ export default function CafeDetail() {
     const { id } = useParams();
     const container = useRef(null); // 지도 데이터 접근
     const navigate = useNavigate(); // useNavigate 훅을 사용하여 페이지 이동
+    const [showEditPopup, setShowEditPopup] = useState(false); // 수정 요청 팝업 상태
+    const [editContent, setEditContent] = useState(""); // 수정 내용 상태
 
     //카페 데이터 (예시 데이터)
     const cafes = [
@@ -39,6 +41,18 @@ export default function CafeDetail() {
         return <p>카페 정보를 찾을 수 없습니다.</p>;
     }
 
+    const handleRequestEdit = () => {
+        setShowEditPopup(true); // 수정 요청 팝업 열기
+    }
+
+    const handleSubmitEdit = (e) => {
+        // 수정 요청 로직 (ex: 수정 팝업창 생성)
+        e.preventDefault();
+        // console.log("수정 요청 내용", editContent);
+        setShowEditPopup(false); // 팝업 닫기
+        setEditContent(""); // 내용 초기화        
+    }
+
     return (
         <div className={styles.bgImg}>
             <h1 className={styles.header}>
@@ -57,8 +71,32 @@ export default function CafeDetail() {
                     <button onClick={() => navigate('/cafeList')} className={styles.backButton}>
                         뒤로가기
                     </button>
+                    <button onClick={handleRequestEdit} className={styles.editRequestButton}>
+                        수정 요청
+                    </button>
                 </div>
             </div>
+
+            {/* 수정 요청 팝업 */}
+            {showEditPopup && (
+                <div className={styles.editPopup}>
+                    <div className={styles.popupContent}>
+                        <span className={styles.closeButton} onClick={() => setShowEditPopup(false)}>×</span>
+                        <h2>수정 요청</h2>
+                        <form onSubmit={handleSubmitEdit}>
+                            <textarea
+                                value={editContent}
+                                onChange={(e) => setEditContent(e.target.value)}
+                                placeholder="수정 내용을 입력하세요..."
+                                rows="4"
+                                className={styles.editTextArea}
+                                required
+                            />
+                            <button type="submit" className={styles.submitButton}>제출</button>
+                        </form>
+                    </div>
+                </div>
+            )}
         </div>
     );
 }

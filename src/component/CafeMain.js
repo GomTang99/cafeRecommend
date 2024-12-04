@@ -13,9 +13,15 @@ export default function CafeMain() {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [showSignupPopup, setShowSignupPopup] = useState(false); // 회원가입 팝업 상태 추가
     const [showLoginPopup, setShowLoginPopup] = useState(false); // 로그인 팝업 상태 추가
+    const [showResetPasswordPopup, setShowResetPasswordPopup] = useState(false); // 비밀번호 재설정 팝업 상태 추가
     const [emailText, setEmailText] = useState(""); // 이메일 텍스트 상태 추가
     const [emailDomain, setEmailDomain] = useState("gmail.com"); // 이메일 도메인 상태 추가
     const [nickname, setNickname] = useState(""); // 닉네임 상태 추가
+    const [verificationCode, setVerificationCode] = useState(""); // 인증번호 상태 추가
+    const [newPassword, setNewPassword] = useState(""); // 새 비밀번호 상태 추가
+    const [confirmPassword, setConfirmPassword] = useState(""); // 비밀번호 확인 상태 추가
+    const [isVerificationSent, setIsVerificationSent] = useState(false); // 인증번호 전송 여부 상태
+
 
     const navigate = useNavigate(); // useHistory 훅 사용
 
@@ -66,12 +72,32 @@ export default function CafeMain() {
 
     const closeLoginPopup = () => {
         setShowLoginPopup(false); // 로그인 팝업 닫기
+        setShowResetPasswordPopup(false); // 비밀번호 재설정 팝업 닫기
     }
 
     const handleLoginSubmit = (e) => {
         e.preventDefault(); // 기본 폼 제출 방지
         // 로그인 처리 로직이 여기에 추가
         navigate('/cafeList'); // CafeList로 이동
+    }
+
+    const handleResetPassword = () => {
+        setShowResetPasswordPopup(true); // 비밀번호 재설정 팝업 열기
+    }
+
+    const handleSendVerificationCode = () => {
+        setIsVerificationSent(true); // 인증번호 전송 상태 변경
+        console.log(`Sending verification code to: ${emailText}@${emailDomain}`);
+        // 실제 API 호출을 통해 인증번호 전송 로직 추가
+    }
+
+    const handleResetPasswordSubmit = (e) => {
+        e.preventDefault();
+        console.log(`New Password: ${newPassword}`);
+        // 비밀번호 재설정 처리 로직 추가
+        // 비밀번호 재설정이 완료되면 로그인 팝업 열기
+        setShowResetPasswordPopup(false); // 비밀번호 재설정 팝업 닫기
+        setShowLoginPopup(true); // 로그인 팝업 열기
     }
 
     return (
@@ -95,7 +121,7 @@ export default function CafeMain() {
 
             {/* 회원가입 팝업 */}
             {showSignupPopup && (
-                <div className={styles.loginPopup}>
+                <div className={styles.registerPopup}>
                     <div className={styles.popupContent}>
                         <span className={styles.closeButton} onClick={closeSignupPopup}>×</span>
                         <h2>회원가입</h2>
@@ -121,7 +147,7 @@ export default function CafeMain() {
                                         <option value="naver.com">@naver.com</option>
                                         <option value="kakao.com">@kakao.com</option>
                                     </select>
-                                    <button type="button" onClick={checkEmail} className={styles.checkButton}>중복 확인</button>
+                                    <button type="button" onClick={checkEmail} className={styles.emailCheckButton}>중복 확인</button>
                                 </div>
                             </div>
                             <div>
@@ -135,7 +161,7 @@ export default function CafeMain() {
                                         onChange={handleNicknameChange}
                                         required
                                     />
-                                    <button type="button" onClick={checkNickname} className={styles.checkButton}>중복 확인</button>
+                                    <button type="button" onClick={checkNickname} className={styles.nicknameCheckButton}>중복 확인</button>
                                 </div>
                             </div>
                             <div>
@@ -168,10 +194,73 @@ export default function CafeMain() {
                                 <input type="password" id="loginPassword" name="loginPassword" required placeholder="비밀번호 입력" />
                             </div>
                             <button type="submit">로그인</button>
+                            <button type="button" onClick={handleResetPassword} className={styles.resetPassword} >비밀번호 재설정</button>
                         </form>
                     </div>
                 </div>
             )}
+
+            {/* 비밀번호 재설정 팝업 */}
+            {showResetPasswordPopup && (
+                <div className={styles.resetPasswordPopup}>
+                    <div className={styles.popupContent}>
+                        <span className={styles.closeButton} onClick={closeLoginPopup}>×</span>
+                        <h2>비밀번호 재설정</h2>
+                        {!isVerificationSent ? (
+                            <form onSubmit={handleSendVerificationCode}>
+                                <div>
+                                    <label htmlFor="resetEmail">이메일:</label>
+                                    <input
+                                        type="email"
+                                        id="resetEmail"
+                                        name="resetEmail"
+                                        value={`${emailText}@${emailDomain}`}
+                                        readOnly
+                                    />
+                                </div>
+                                <button type="button" onClick={handleSendVerificationCode}>인증번호 보내기</button>
+                            </form>
+                        ) : (
+                            <form onSubmit={handleResetPasswordSubmit}>
+                                <div>
+                                    <label htmlFor="verificationCode">인증번호:</label>
+                                    <input
+                                        type="text"
+                                        id="verificationCode"
+                                        name="verificationCode"
+                                        value={verificationCode}
+                                        onChange={(e) => setVerificationCode(e.target.value)}
+                                        required
+                                    />
+                                </div>
+                                <div>
+                                    <label htmlFor="newPassword">새 비밀번호:</label>
+                                    <input
+                                        type="password"
+                                        id="newPassword"
+                                        name="newPassword"
+                                        value={newPassword}
+                                        onChange={(e) => setNewPassword(e.target.value)}
+                                        required
+                                    />
+                                </div>
+                                <div>
+                                    <label htmlFor="confirmNewPassword">비밀번호 확인:</label>
+                                    <input
+                                        type="password"
+                                        id="confirmNewPassword"
+                                        name="confirmNewPassword"
+                                        value={confirmPassword}
+                                        onChange={(e) => setConfirmPassword(e.target.value)}
+                                        required
+                                    />
+                                </div>
+                                <button type="submit">비밀번호 재설정</button>
+                            </form>
+                        )}
+                    </div>
+                </div>
+            )}            
         </div>
     )
 }
