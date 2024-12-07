@@ -81,7 +81,7 @@ img {
 }
 
 .list_wrap {
-    width: 80%;
+    width: 70%;
     text-align: center;
     margin: 20px auto; /* 리스트와의 간격 추가 */
     height: 80%;
@@ -91,7 +91,7 @@ img {
 .list_up {
     width: 100%;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
 }
 
@@ -111,16 +111,17 @@ img {
     border: 1px solid #ddd;
     border-radius: 8px;
     margin: 10px; /* 카드 간격 */
-    padding: 10px;
-    width: calc(33% - 20px); /* 3개 카드가 한 줄에 보이도록 설정 */
+    padding: 5px; /* 패딩 줄이기 */
+    width: 30%; /* 카드 너비 줄이기 (예: 25%로 변경) */
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     text-align: center; /* 텍스트 중앙 정렬 */
 }
 
 .cardImage {
-    width: 100%; /* 이미지 전체 너비 */
+    width: 80%; /* 이미지 전체 너비 */
     height: auto; /* 비율에 맞게 높이 자동 조정 */
     border-radius: 8px 8px 0 0; /* 이미지 상단 모서리 둥글게 */
+    margin: 0 auto;
 }
 
 .cardTitle {
