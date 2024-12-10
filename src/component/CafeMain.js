@@ -2,12 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom'; // useHistory 훅 임포트
 import styles from './CafeMain.module.css';
 import { Link } from 'react-router-dom';
+import axios from 'axios'; // Axios 임포트 추가
 
 const images = [
     { id: 1, url: require('../img/slide1.jpg'), link: '/cafeList' },
     { id: 2, url: require('../img/slide2.jpg'), link: '/cafeList' },
     { id: 3, url: require('../img/slide3.jpg'), link: '/cafeList' },
 ];
+
 
 export default function CafeMain() {
     const [currentIndex, setCurrentIndex] = useState(0);
@@ -52,12 +54,27 @@ export default function CafeMain() {
         setNickname(e.target.value); // 닉네임 업데이트
     }
 
-    const handleSignupSubmit = (e) => {
+    const handleSignupSubmit = async (e) => {
         e.preventDefault(); // 폼 제출 기본 동작 방지
-        // 여기서 회원가입 처리 로직을 추가하고 로그인 팝업 보여주기
-        console.log(`가입할 이메일: ${emailText}@${emailDomain}, 닉네임: ${nickname}`); // 가입할 정보 출력
-        setShowSignupPopup(false); // 회원가입 팝업 닫기
-        setShowLoginPopup(true); // 로그인 팝업 열기
+    
+        // 이메일과 도메인 결합
+        const fullEmail = `${emailText}@${emailDomain}`;
+    
+        try {
+            const response = await axios.post('http://localhost:5000/register', {
+                user_email: fullEmail, // 이메일
+                user_nickname: nickname, // 닉네임
+                user_password: e.target.password.value, // 비밀번호 입력값
+            });
+    
+            if (response.status === 201) {
+                console.log('회원가입이 되었습니다.');  // 회원가입 성공 시 메시지 출력
+                setShowSignupPopup(false); // 회원가입 팝업 닫기
+                // 추가 작업 (예: 로그인 팝업 열기 등)
+            }
+        } catch (error) {
+            console.error('회원가입 실패:', error.response ? error.response.data.error : error.message);
+        }
     };
 
     const checkEmail = () => {
@@ -99,6 +116,8 @@ export default function CafeMain() {
         setShowResetPasswordPopup(false); // 비밀번호 재설정 팝업 닫기
         setShowLoginPopup(true); // 로그인 팝업 열기
     }
+
+    
 
     return (
         <div className={styles.bgImg}>

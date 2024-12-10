@@ -11,12 +11,19 @@ export default function CafeList() {
     const [favorites, setFavorites] = useState([]); // 즐겨찾기 상태 알림 추가
 
     // 카페 데이터
-    const cafes = [
-        { id : 1, name: "그릿비", region: "울산", category: "뷰맛집", imageUrl: require('../img/view1.jpg') },
-        { id : 2, name: "롤링커피", region: "울산", category: "커피맛집", imageUrl:  require('../img/coffe1.jpg') },
-        { id : 3, name: "아베베베이커리", region: "서울", category: "빵맛집", imageUrl:  require('../img/bread1.jpg') },
-        { id : 4, name: "델문도", region: "제주", category: "뷰맛집", imageUrl: require('../img/view2.jpg') },
-    ];
+    // const cafes = [
+    //     { id : 1, name: "그릿비", region: "울산", category: "뷰맛집", imageUrl: require('../img/view1.jpg') },
+    //     { id : 2, name: "롤링커피", region: "울산", category: "커피맛집", imageUrl:  require('../img/coffe1.jpg') },
+    //     { id : 3, name: "아베베베이커리", region: "서울", category: "빵맛집", imageUrl:  require('../img/bread1.jpg') },
+    //     { id : 4, name: "델문도", region: "제주", category: "뷰맛집", imageUrl: require('../img/view2.jpg') },
+    // ];
+
+    useEffect(() => {
+        fetch('/api/cafes')
+            .then(response => response.json())
+            .then(data => setCafes(data))
+            .catch(error => console.error('Error fetching cafes:', error));
+    }, []);
 
     // 필터링 된 카페 목록
     const filteredCafes = cafes.filter(cafe => {
